@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">OnlineStore</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="intro_title">Welcome to <font color="#39c7a5">Digital Store</font>\n
+        a <font color="#39c7a5"> Gateway </font> to the Latest Tech</string>
+    <string name="intro_sub_title">Sign in to explore a wide range of cutting-edge\n digital products.
+        Don`t have an account yet?\n
+        Register now and enjoy a seamless\nand secure shopping experience</string>
+    <string name="lets_s_get_started">Lets\'s Get Started</string>
+    <string name="signing">Already have an account? <font color="#39c7a5"> Sign In</font> </string>
+    <string name="recomendation">Recomendation</string>
+    <string name="mainFragmentWelcomeText">Welcome Back</string>
+    <string name="mainFragmentUserName">Tom</string>
+    <string name="see_all">See all</string>
+    <string name="explorer">Explorer</string>
+    <string name="profile">Profile</string>
+    <string name="my_order">My Order</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="cart">Cart</string>
+    <string name="my_cart">My Cart</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="fee_delivery">Fee delivery</string>
+    <string name="total_tax">Total Tax</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="cash">Cash</string>
+    <string name="pay_cash_when_the_medicines_at_the_destination">Pay Cash When the medicines\n
+        at the destination</string>
+    <string name="login_to_your_online_account_and_make_payment">Login to your online account and make payment</string>
+    <string name="mainFragmentCategoriesText">Categories</string>
+
+</resources>
