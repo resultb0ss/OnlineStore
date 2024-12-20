@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.example.onlinestore.Adapter.CategoryAdapter
+import com.example.onlinestore.Adapter.RecommendedAdapter
+import com.example.onlinestore.Adapter.SliderAdapter
 import com.example.onlinestore.Model.SliderModel
 import com.example.onlinestore.R
 import com.example.onlinestore.ViewModel.MainViewModel
@@ -29,14 +32,16 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun onResume() {
         super.onResume()
-//        initBanner()
+        initBanner()
         initCategory()
         initRecommended()
         initBottomMenu()
     }
 
     private fun initBottomMenu() {
-        findNavController().navigate(R.id.action_mainFragment_to_cartFragment)
+        binding.mainFragmentBottomMenuCartButton.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_cartFragment)
+        }
     }
 
     private fun initRecommended() {
@@ -44,10 +49,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         viewModel.recommended.observe(requireActivity(), Observer {
             binding.mainFragmentRecyclerViewRecommendation.layoutManager =
                 GridLayoutManager(requireActivity(), 2)
-//            binding.mainFragmentRecyclerViewRecommendation.adapter = RecommendedAdapter(it)
+            binding.mainFragmentRecyclerViewRecommendation.adapter =
+                RecommendedAdapter(it) { item ->
+                    val action = MainFragmentDirections.actionMainFragmentToDetailFragment(item)
+                    findNavController().navigate(action)
+                }
             binding.mainFragmentProgressBarRecommendation.visibility = View.GONE
         })
-//        viewModel.loadRecommended()
+        viewModel.loadRecommended()
 
     }
 
@@ -58,14 +67,19 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 requireActivity(),
                 LinearLayoutManager.HORIZONTAL, false
             )
-//            binding.mainFragmentRecyclerViewCategory.adapter = CategoryAdapter(it)
+            binding.mainFragmentRecyclerViewCategory.adapter = CategoryAdapter(it) { id, title ->
+                val action = MainFragmentDirections.Companion
+                    .actionMainFragmentToListItemsFragment(id, title)
+                findNavController().navigate(action)
+            }
             binding.mainFragmentProgressBarCategory.visibility = View.GONE
         })
-//        viewModel.loadCategory()
+        viewModel.loadCategory()
     }
 
     private fun banners(image: List<SliderModel>) {
-//        binding.mainFragmentViewPager2.adapter = SliderAdapter(image,binding.mainFragmentViewPager2)
+        binding.mainFragmentViewPager2.adapter =
+            SliderAdapter(image, binding.mainFragmentViewPager2)
         binding.mainFragmentViewPager2.clipToPadding = false
         binding.mainFragmentViewPager2.clipChildren = false
         binding.mainFragmentViewPager2.offscreenPageLimit = 3
@@ -90,7 +104,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             banners(it)
             binding.mainFragmentProgressBarSlider.visibility = View.GONE
         })
-//        viewModel.loadBanners()
+        viewModel.loadBanners()
     }
 
 

@@ -39,8 +39,8 @@ class CartAdapter(
             "$${Math.round(item.numberInCart * item.price)}"
         holder.binding.itemCartViewNumberItemText.text = item.numberInCart.toString()
 
-        Glide.with(holder.itemView.context).load(item.picUrl[0])
-            .into(holder.binding.itemCartViewItemImage)
+//        Glide.with(holder.itemView.context).load(item.picUrl[0])
+//            .into(holder.binding.itemCartViewItemImage)
         holder.binding.itemCartViewPlusCartButton.setOnClickListener {
             managmentCart.plusItem(listItemSelected, position, object : ChangeNumberItemsListener {
                 override fun onChanged() {

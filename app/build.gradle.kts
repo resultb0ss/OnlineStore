@@ -83,6 +83,7 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:storage-kt:3.0.3")
     implementation("io.github.jan-tennert.supabase:postgrest-kt:3.0.3")
     implementation("io.github.jan-tennert.supabase:serializer-jackson:3.0.3")
+    implementation("io.github.jan-tennert.supabase:serializer-moshi:3.0.3")
     implementation(platform("io.github.jan-tennert.supabase:bom:3.0.3"))
     implementation("io.ktor:ktor-client-cio:3.0.2")
 

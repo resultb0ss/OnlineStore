@@ -22,10 +22,37 @@
         <action
             android:id="@+id/action_mainFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_listItemsFragment"
+            app:destination="@id/listItemsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.example.onlinestore.Fragment.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/listItemsFragment"
+        android:name="com.example.onlinestore.Fragment.ListItemsFragment"
+        android:label="fragment_list_items"
+        tools:layout="@layout/fragment_list_items" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.onlinestore.Fragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="Item"
+            app:argType="com.example.onlinestore.Model.ItemsModel" />
+    </fragment>
 </navigation>
