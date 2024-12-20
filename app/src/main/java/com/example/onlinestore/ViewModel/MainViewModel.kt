@@ -28,15 +28,15 @@ class MainViewModel: ViewModel() {
 
     fun loadRecommended(){
         viewModelScope.launch{
-            val list = mutableListOf<SliderModel>()
+            val list = mutableListOf<ItemsModel>()
             val data = clientDatabase.from("Items").select{
                 filter {
                     eq("showRecommended", true)
                 }
-            }.decodeList<SliderModel>()
+            }.decodeList<ItemsModel>()
             Log.d("@@@","View Model list urls $data")
             list.addAll(data)
-            _banner.value = list
+            _recommended.value = list
         }
     }
 
