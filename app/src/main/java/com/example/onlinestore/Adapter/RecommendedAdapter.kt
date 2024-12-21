@@ -1,13 +1,19 @@
 package com.example.onlinestore.Adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.onlinestore.Model.ItemsModel
+import com.example.onlinestore.Utilits.getJsonValues
 import com.example.onlinestore.databinding.ViewholderRecommendedBinding
+import kotlinx.serialization.json.jsonArray
 
-class RecommendedAdapter(val items: MutableList<ItemsModel>,val function: (item: ItemsModel) -> Unit) :
+class RecommendedAdapter(
+    val items: MutableList<ItemsModel>,
+    val function: (item: ItemsModel) -> Unit
+) :
     RecyclerView.Adapter<RecommendedAdapter.RecommendedViewHolder>() {
 
 
@@ -31,7 +37,10 @@ class RecommendedAdapter(val items: MutableList<ItemsModel>,val function: (item:
             recommendedItemPriceText.text = "$${item.price}"
             recommendedItemRatingText.text = item.rating.toString()
 
-//            Glide.with(holder.itemView.context).load(item.picUrl[0]).into(recommendedItemImage)
+            val jsonElem = item.picUrl.getJsonValues()
+
+            Glide.with(holder.itemView.context).load(jsonElem[0])
+                .into(recommendedItemImage)
 
             root.setOnClickListener {
                 function(item)

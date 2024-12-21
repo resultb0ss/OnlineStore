@@ -9,13 +9,16 @@ import com.example.onlinestore.Data.SupabaseClient.clientDatabase
 import com.example.onlinestore.Model.CategoryModel
 import com.example.onlinestore.Model.ItemsModel
 import com.example.onlinestore.Model.SliderModel
+import com.example.onlinestore.Utilits.getJsonValues
 import io.github.jan.supabase.postgrest.from
-import io.github.jan.supabase.postgrest.postgrest
-import io.github.jan.supabase.postgrest.query.Columns
-import io.github.jan.supabase.realtime.Column
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromJsonElement
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
-class MainViewModel: ViewModel() {
+
+class MainViewModel : ViewModel() {
 
     private val _banner = MutableLiveData<List<SliderModel>>()
     private val _category = MutableLiveData<MutableList<CategoryModel>>()
@@ -26,23 +29,23 @@ class MainViewModel: ViewModel() {
     val recommended: LiveData<MutableList<ItemsModel>> = _recommended
 
 
-    fun loadRecommended(){
-        viewModelScope.launch{
+    fun loadRecommended() {
+        viewModelScope.launch {
             val list = mutableListOf<ItemsModel>()
-            val data = clientDatabase.from("Items").select{
+            val data = clientDatabase.from("Items").select() {
                 filter {
                     eq("showRecommended", true)
                 }
             }.decodeList<ItemsModel>()
-            Log.d("@@@","View Model list urls $data")
             list.addAll(data)
+            Log.d("@@@","list $list")
             _recommended.value = list
         }
     }
 
 
-    fun loadBanners(){
-        viewModelScope.launch{
+    fun loadBanners() {
+        viewModelScope.launch {
             val list = mutableListOf<SliderModel>()
             val data = clientDatabase.from("Banner").select().decodeList<SliderModel>()
             list.addAll(data)
@@ -50,8 +53,8 @@ class MainViewModel: ViewModel() {
         }
     }
 
-    fun loadCategory(){
-        viewModelScope.launch{
+    fun loadCategory() {
+        viewModelScope.launch {
             val list = mutableListOf<CategoryModel>()
             val data = clientDatabase.from("Category").select().decodeList<CategoryModel>()
             list.addAll(data)

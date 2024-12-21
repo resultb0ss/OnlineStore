@@ -1,10 +1,12 @@
 package com.example.onlinestore.Data
 
+import io.github.jan.supabase.SupabaseSerializer
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.realtime.Realtime
 import io.github.jan.supabase.serializer.JacksonSerializer
 import io.github.jan.supabase.serializer.KotlinXSerializer
+import io.github.jan.supabase.serializer.MoshiSerializer
 import io.github.jan.supabase.storage.Storage
 
 object SupabaseClient {
@@ -13,7 +15,7 @@ object SupabaseClient {
         supabaseKey = BuildConfig.SUPABASE_KEY,
         supabaseUrl = BuildConfig.SUPABASE_URL
     ){
-        defaultSerializer = JacksonSerializer()
+        defaultSerializer = KotlinXSerializer()
         install(Storage)
         install(Postgrest)
         install(Realtime)
