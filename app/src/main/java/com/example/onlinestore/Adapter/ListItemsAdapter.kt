@@ -1,5 +1,6 @@
 package com.example.onlinestore.Adapter
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,28 +8,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.onlinestore.Model.ItemsModel
 import com.example.onlinestore.Utilits.getJsonValues
-import com.example.onlinestore.Utilits.loadImage
 import com.example.onlinestore.databinding.ViewholderRecommendedBinding
-import kotlinx.serialization.json.jsonArray
 
-class RecommendedAdapter(
-    val items: MutableList<ItemsModel>,
-    val function: (item: ItemsModel) -> Unit
-) :
-    RecyclerView.Adapter<RecommendedAdapter.RecommendedViewHolder>() {
-
-
+class ListItemsAdapter(val items: MutableList<ItemsModel>, val function:(item: ItemsModel) -> Unit) :
+    RecyclerView.Adapter<ListItemsAdapter.ListItemsHolderAdapter>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecommendedViewHolder {
+    ): ListItemsHolderAdapter {
         val binding =
             ViewholderRecommendedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return RecommendedViewHolder(binding)
+        return ListItemsHolderAdapter(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(
-        holder: RecommendedViewHolder,
+        holder: ListItemsHolderAdapter,
         position: Int
     ) {
         val item = items[position]
@@ -37,11 +32,9 @@ class RecommendedAdapter(
             recommendedItemTitleText.text = item.title
             recommendedItemPriceText.text = "$${item.price}"
             recommendedItemRatingText.text = item.rating.toString()
+            Glide.with(holder.itemView.context).load(item.picUrl[0]).into(recommendedItemImage)
 
-            Glide.with(holder.itemView.context).load(item.picUrl[0])
-                .into(recommendedItemImage)
-
-            root.setOnClickListener {
+            root.setOnClickListener{
                 function(item)
             }
         }
@@ -50,8 +43,10 @@ class RecommendedAdapter(
     override fun getItemCount(): Int = items.size
 
 
-    class RecommendedViewHolder(val binding: ViewholderRecommendedBinding) :
+    class ListItemsHolderAdapter(val binding: ViewholderRecommendedBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
     }
+
+
 }

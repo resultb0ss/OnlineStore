@@ -45,6 +45,12 @@
         <argument
             android:name="title"
             app:argType="string" />
+        <action
+            android:id="@+id/action_listItemsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_listItemsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -54,5 +60,11 @@
         <argument
             android:name="Item"
             app:argType="com.example.onlinestore.Model.ItemsModel" />
+        <action
+            android:id="@+id/action_detailFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_listItemsFragment"
+            app:destination="@id/listItemsFragment" />
     </fragment>
 </navigation>

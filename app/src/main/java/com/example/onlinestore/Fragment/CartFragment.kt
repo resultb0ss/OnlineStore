@@ -1,60 +1,115 @@
 package com.example.onlinestore.Fragment
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.annotation.SuppressLint
+import android.content.res.ColorStateList
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.onlinestore.Adapter.CartAdapter
+import com.example.onlinestore.Helper.ChangeNumberItemsListener
+import com.example.onlinestore.Helper.ManagmentCart
 import com.example.onlinestore.R
+import com.example.onlinestore.databinding.FragmentCartBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CartFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CartFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class CartFragment : BaseFragment<FragmentCartBinding>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private lateinit var managmentCart: ManagmentCart
+    private var tax: Double = 0.0
+
+    override fun inflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentCartBinding {
+        return FragmentCartBinding.inflate(inflater, container, false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        managmentCart = ManagmentCart(requireContext())
+        setVariable()
+        initCartList()
+        calculatorCart()
+    }
+
+    private fun initCartList() {
+        binding.fragmentCartRecyclerView.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.VERTICAL, false
+        )
+        Log.d("@@@","Cart Get list()")
+        binding.fragmentCartRecyclerView.adapter = CartAdapter(
+            managmentCart.getListCart(),
+            requireContext(),
+            object : ChangeNumberItemsListener {
+                override fun onChanged() {
+                    calculatorCart()
+                }
+            })
+        with(binding) {
+            fragmentCartEmptyText.visibility =
+                if (managmentCart.getListCart().isEmpty()) View.VISIBLE else View.GONE
+            scrollView2.visibility =
+                if (managmentCart.getListCart().isEmpty()) View.GONE else View.VISIBLE
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+    private fun setVariable() {
+        binding.apply {
+            fragmentCartBackButton.setOnClickListener {
+                Toast.makeText(requireContext(), "Надо сделать переход назад", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            fragmentCartPaymentMethod1.setOnClickListener {
+                fragmentCartPaymentMethod1.setBackgroundResource(R.drawable.green_bg_selected)
+                methodIc1.imageTintList =
+                    ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.green))
+                methodTitle1.setTextColor(resources.getColor(R.color.green))
+                methodSubtitle1.setTextColor(resources.getColor(R.color.green))
+
+                fragmentCartPaymentMethod2.setBackgroundResource(R.drawable.grey_bg_selected)
+                methodIc2.imageTintList =
+                    ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.black))
+                methodTitle2.setTextColor(resources.getColor(R.color.black))
+                methodSubtitle2.setTextColor(resources.getColor(R.color.grey))
+            }
+
+            fragmentCartPaymentMethod2.setOnClickListener {
+                fragmentCartPaymentMethod2.setBackgroundResource(R.drawable.green_bg_selected)
+                methodIc2.imageTintList =
+                    ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.green))
+                methodTitle2.setTextColor(resources.getColor(R.color.green))
+                methodSubtitle2.setTextColor(resources.getColor(R.color.green))
+
+                fragmentCartPaymentMethod1.setBackgroundResource(R.drawable.grey_bg_selected)
+                methodIc1.imageTintList =
+                    ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.black))
+                methodTitle1.setTextColor(resources.getColor(R.color.black))
+                methodSubtitle1.setTextColor(resources.getColor(R.color.grey))
+            }
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CartFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CartFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    @SuppressLint("SetTextI18n")
+    private fun calculatorCart() {
+        val percentTax = 0.02
+        val delivery = 10.0
+        tax = Math.round((managmentCart.getTotalFee() * percentTax) * 100) / 100.0
+        val total = Math.round((managmentCart.getTotalFee() * tax * delivery) * 100) / 100
+        val itemTotal = Math.round(managmentCart.getTotalFee() * 100) / 100
+
+        with(binding) {
+            fragmentCartTotalFeeText.text = "$${itemTotal}"
+            fragmentCarTaxText.text = "$${tax}"
+            fragmentCartDeliveryText.text = "$${delivery}"
+            fragmentCartTotalText.text = "$${total}"
+        }
     }
+
+
 }

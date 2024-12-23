@@ -8,6 +8,8 @@ import com.bumptech.glide.Glide
 import com.example.onlinestore.Helper.ChangeNumberItemsListener
 import com.example.onlinestore.Helper.ManagmentCart
 import com.example.onlinestore.Model.ItemsModel
+import com.example.onlinestore.Utilits.getJsonValues
+import com.example.onlinestore.Utilits.loadImage
 import com.example.onlinestore.databinding.ViewholderCartBinding
 
 class CartAdapter(
@@ -39,8 +41,9 @@ class CartAdapter(
             "$${Math.round(item.numberInCart * item.price)}"
         holder.binding.itemCartViewNumberItemText.text = item.numberInCart.toString()
 
-//        Glide.with(holder.itemView.context).load(item.picUrl[0])
-//            .into(holder.binding.itemCartViewItemImage)
+        Glide.with(holder.itemView.context).load(item.picUrl[0])
+            .into(holder.binding.itemCartViewItemImage)
+
         holder.binding.itemCartViewPlusCartButton.setOnClickListener {
             managmentCart.plusItem(listItemSelected, position, object : ChangeNumberItemsListener {
                 override fun onChanged() {

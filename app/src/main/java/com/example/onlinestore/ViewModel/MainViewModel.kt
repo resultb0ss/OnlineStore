@@ -28,6 +28,19 @@ class MainViewModel : ViewModel() {
     val categories: LiveData<MutableList<CategoryModel>> = _category
     val recommended: LiveData<MutableList<ItemsModel>> = _recommended
 
+    fun loadFiltered(id: String) {
+        viewModelScope.launch {
+            val list = mutableListOf<ItemsModel>()
+            val data = clientDatabase.from("Items").select() {
+                filter {
+                    eq("categoryId", id)
+                }
+            }.decodeList<ItemsModel>()
+            list.addAll(data)
+            Log.d("@@@","Main View Model list id $list")
+            _recommended.value = list
+        }
+    }
 
     fun loadRecommended() {
         viewModelScope.launch {
@@ -38,7 +51,7 @@ class MainViewModel : ViewModel() {
                 }
             }.decodeList<ItemsModel>()
             list.addAll(data)
-            Log.d("@@@","list $list")
+            Log.d("@@@","Recommended $list")
             _recommended.value = list
         }
     }
