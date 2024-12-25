@@ -9,6 +9,7 @@
         Register now and enjoy a seamless\nand secure shopping experience</string>
     <string name="lets_s_get_started">Lets\'s Get Started</string>
     <string name="signing">Already have an account? <font color="#39c7a5"> Sign In</font> </string>
+    <string name="or_register_in_app">or <font color="#39c7a5">Register</font> in App</string>
     <string name="recomendation">Recomendation</string>
     <string name="mainFragmentWelcomeText">Welcome Back</string>
     <string name="mainFragmentUserName">Tom</string>

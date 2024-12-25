@@ -66,6 +66,7 @@
                 android:text="@string/signing"
                 android:textAlignment="center"
                 android:textSize="18sp" />
+
         </LinearLayout>
     </ScrollView>
 

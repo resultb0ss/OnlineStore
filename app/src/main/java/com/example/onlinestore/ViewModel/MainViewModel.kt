@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.onlinestore.Model.CategoryModel
 import com.example.onlinestore.Model.ItemsModel
+import com.example.onlinestore.Model.Order
 import com.example.onlinestore.Model.SliderModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,10 +20,12 @@ class MainViewModel : ViewModel() {
     private val _banner = MutableLiveData<List<SliderModel>>()
     private val _category = MutableLiveData<MutableList<CategoryModel>>()
     private val _recommended = MutableLiveData<MutableList<ItemsModel>>()
+    private val _orders = MutableLiveData<MutableList<Order>>()
 
     val banners: LiveData<List<SliderModel>> = _banner
     val categories: LiveData<MutableList<CategoryModel>> = _category
     val recommended: LiveData<MutableList<ItemsModel>> = _recommended
+    val orders: LiveData<MutableList<Order>> = _orders
 
     fun loadFiltered(id: String) {
         val ref = firebaseDatabase.getReference("Items")
@@ -45,6 +48,28 @@ class MainViewModel : ViewModel() {
         })
 
     }
+
+    fun loadOrders() {
+        val ref = firebaseDatabase.getReference("Order")
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val lists = mutableListOf<Order>()
+                for (childSnapshot in snapshot.children) {
+                    val list = childSnapshot.getValue(Order::class.java)
+                    if (list != null) {
+                        lists.add(list)
+                    }
+                }
+                _orders.value = lists
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
+    }
+
 
     fun loadRecommended() {
         val ref = firebaseDatabase.getReference("Items")

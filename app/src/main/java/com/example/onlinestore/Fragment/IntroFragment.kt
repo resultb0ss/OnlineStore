@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.onlinestore.databinding.FragmentIntroBinding
 import com.example.onlinestore.R
+import com.example.onlinestore.databinding.FragmentIntroBinding
 
 class IntroFragment : BaseFragment<FragmentIntroBinding>() {
 
@@ -20,12 +20,16 @@ class IntroFragment : BaseFragment<FragmentIntroBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.startButton.setOnClickListener{
+        binding.startButton.setOnClickListener {
             findNavController().navigate(R.id.action_introFragment_to_mainFragment)
         }
 
-        binding.introFragmentSignInText.setOnClickListener{
+        binding.introFragmentSignInText.setOnClickListener {
             findNavController().navigate(R.id.action_introFragment_to_loginFragment)
+        }
+
+        binding.introFragmentRegistrationText.setOnClickListener {
+            findNavController().navigate(R.id.action_introFragment_to_registrationFragment)
         }
     }
 

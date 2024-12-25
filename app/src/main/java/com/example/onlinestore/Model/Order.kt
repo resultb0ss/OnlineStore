@@ -3,26 +3,20 @@ package com.example.onlinestore.Model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class User(
-
+data class Order(
     val id: Int = 1,
-    var firstName: String = "",
-    var lastName: String = "",
-    var phone: String = "",
-    var email: String = "",
-    var orders: ArrayList<String> = ArrayList(),
-    var addresses: ArrayList<String> = ArrayList()
-
-    ) : Parcelable {
+    val customId: String = "",
+    val timestamp: String = "",
+    val status: String = "",
+    val coast: String = ""
+) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.createStringArrayList() as ArrayList<String>,
-        parcel.createStringArrayList() as ArrayList<String>
+        parcel.readString().toString()
     ) {
 
     }
@@ -33,12 +27,10 @@ data class User(
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeInt(id)
-        dest.writeString(firstName)
-        dest.writeString(lastName)
-        dest.writeString(phone)
-        dest.writeString(email)
-        dest.writeStringList(orders)
-        dest.writeStringList(addresses)
+        dest.writeString(customId)
+        dest.writeString(timestamp)
+        dest.writeString(status)
+        dest.writeString(coast)
 
     }
 

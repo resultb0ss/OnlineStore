@@ -11,9 +11,8 @@ lateinit var REF_DATABASE_ROOT: DatabaseReference
 lateinit var USER: User
 
 const val NODE_USERS = "users"
-const val NODE_USERNAMES = "usernames"
 const val NODE_PHONES = "phones"
-const val NODE_PHONES_CONTACTS = "phones_contacts"
+const val NODE_ORDERS = "orders"
 
 const val CHILD_ID = "id"
 const val CHILD_PHONE = "phone"
