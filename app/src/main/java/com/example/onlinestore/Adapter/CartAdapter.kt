@@ -8,8 +8,6 @@ import com.bumptech.glide.Glide
 import com.example.onlinestore.Helper.ChangeNumberItemsListener
 import com.example.onlinestore.Helper.ManagmentCart
 import com.example.onlinestore.Model.ItemsModel
-import com.example.onlinestore.Utilits.getJsonValues
-import com.example.onlinestore.Utilits.loadImage
 import com.example.onlinestore.databinding.ViewholderCartBinding
 
 class CartAdapter(

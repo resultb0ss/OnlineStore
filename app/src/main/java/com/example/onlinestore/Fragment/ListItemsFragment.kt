@@ -60,7 +60,6 @@ class ListItemsFragment : BaseFragment<FragmentListItemsBinding>() {
 
         id = ListItemsFragmentArgs.Companion.fromBundle(requireArguments()).id
         title = ListItemsFragmentArgs.Companion.fromBundle(requireArguments()).title
-        Log.d("@@@","List Items id$id, title$title")
         binding.categoryText.text = title
     }
 

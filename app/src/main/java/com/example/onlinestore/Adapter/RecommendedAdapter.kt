@@ -1,15 +1,11 @@
 package com.example.onlinestore.Adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.onlinestore.Model.ItemsModel
-import com.example.onlinestore.Utilits.getJsonValues
-import com.example.onlinestore.Utilits.loadImage
 import com.example.onlinestore.databinding.ViewholderRecommendedBinding
-import kotlinx.serialization.json.jsonArray
 
 class RecommendedAdapter(
     val items: MutableList<ItemsModel>,

@@ -7,4 +7,12 @@
     <color name="grey">#B4B2B2</color>
     <color name="darkGrey">#616161</color>
     <color name="lightGrey">#E7E7E7</color>
+    <color name="main_color_day_dark">#014894</color>
+    <color name="main_color_day_light">#22AFDD</color>
+    <color name="main_color_night_dark">#19161B</color>
+    <color name="main_color_night_light">#545456</color>
+    <color name="hintColorWhite">#B4FFFFFF</color>
+    <color name="hintColorGray">#B8707070</color>
+    <color name="messageColorGreen">#C292F896</color>
+    <color name="mainSingleChatColor">#C265E1EF</color>
 </resources>

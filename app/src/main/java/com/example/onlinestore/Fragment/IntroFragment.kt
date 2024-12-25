@@ -23,6 +23,10 @@ class IntroFragment : BaseFragment<FragmentIntroBinding>() {
         binding.startButton.setOnClickListener{
             findNavController().navigate(R.id.action_introFragment_to_mainFragment)
         }
+
+        binding.introFragmentSignInText.setOnClickListener{
+            findNavController().navigate(R.id.action_introFragment_to_loginFragment)
+        }
     }
 
 

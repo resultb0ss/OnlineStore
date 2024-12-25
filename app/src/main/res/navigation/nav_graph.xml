@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_introFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_introFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -66,5 +69,29 @@
         <action
             android:id="@+id/action_detailFragment_to_listItemsFragment"
             app:destination="@id/listItemsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.onlinestore.Fragment.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_enterSmsFragment"
+            app:destination="@id/enterSmsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/enterSmsFragment"
+        android:name="com.example.onlinestore.Fragment.EnterSmsFragment"
+        android:label="fragment_enter_sms"
+        tools:layout="@layout/fragment_enter_sms" >
+        <action
+            android:id="@+id/action_enterSmsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="number"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>

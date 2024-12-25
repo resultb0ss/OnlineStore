@@ -7,6 +7,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
     kotlin("plugin.serialization") version "2.1.0"
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -51,6 +52,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -78,14 +80,11 @@ dependencies {
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
 
-    //SupaBase
-    implementation("io.github.jan-tennert.supabase:realtime-kt:3.0.3")
-    implementation("io.github.jan-tennert.supabase:storage-kt:3.0.3")
-    implementation("io.github.jan-tennert.supabase:postgrest-kt:3.0.3")
-    implementation("io.github.jan-tennert.supabase:serializer-jackson:3.0.3")
-    implementation("io.github.jan-tennert.supabase:serializer-moshi:3.0.3")
-    implementation(platform("io.github.jan-tennert.supabase:bom:3.0.3"))
-    implementation("io.ktor:ktor-client-cio:3.0.2")
+    //Firebase
+    implementation("com.google.firebase:firebase-database-ktx:21.0.0")
+    implementation("com.google.firebase:firebase-auth:22.3.1")
+    implementation ("com.firebaseui:firebase-ui-database:8.0.2")
+    implementation("com.google.firebase:firebase-bom:33.7.0")
 
     //DaggerHilt
     implementation("com.google.dagger:hilt-android:2.52")

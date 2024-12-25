@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.onlinestore.Adapter.CartAdapter
 import com.example.onlinestore.Helper.ChangeNumberItemsListener
 import com.example.onlinestore.Helper.ManagmentCart
 import com.example.onlinestore.R
 import com.example.onlinestore.databinding.FragmentCartBinding
+import kotlin.math.roundToInt
 
 
 class CartFragment : BaseFragment<FragmentCartBinding>() {
@@ -41,7 +43,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
             requireContext(),
             LinearLayoutManager.VERTICAL, false
         )
-        Log.d("@@@","Cart Get list()")
+
         binding.fragmentCartRecyclerView.adapter = CartAdapter(
             managmentCart.getListCart(),
             requireContext(),
@@ -61,8 +63,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
     private fun setVariable() {
         binding.apply {
             fragmentCartBackButton.setOnClickListener {
-                Toast.makeText(requireContext(), "Надо сделать переход назад", Toast.LENGTH_SHORT)
-                    .show()
+                findNavController().popBackStack()
             }
 
             fragmentCartPaymentMethod1.setOnClickListener {
@@ -99,9 +100,9 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
     private fun calculatorCart() {
         val percentTax = 0.02
         val delivery = 10.0
-        tax = Math.round((managmentCart.getTotalFee() * percentTax) * 100) / 100.0
-        val total = Math.round((managmentCart.getTotalFee() * tax * delivery) * 100) / 100
-        val itemTotal = Math.round(managmentCart.getTotalFee() * 100) / 100
+        tax = ((managmentCart.getTotalFee() * percentTax) * 100).roundToInt() / 100.0
+        val total = ((managmentCart.getTotalFee() * tax * delivery) * 100).roundToInt() / 100
+        val itemTotal = (managmentCart.getTotalFee() * 100).roundToInt() / 100
 
         with(binding) {
             fragmentCartTotalFeeText.text = "$${itemTotal}"

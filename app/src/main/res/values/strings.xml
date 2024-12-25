@@ -29,4 +29,26 @@
     <string name="login_to_your_online_account_and_make_payment">Login to your online account and make payment</string>
     <string name="mainFragmentCategoriesText">Categories</string>
 
+    <!-- Login Fragment strings -->
+    <string name="login_fragment_email_field_hint">Email</string>
+    <string name="login_fragment_password_field_hint">Password</string>
+    <string name="login_fragment_recover_text_link">Забыли пароль?</string>
+    <string name="login_fragment_login_button_text">Войти</string>
+    <string name="login_fragment_no_account_text">Нет аккаунта?</string>
+    <string name="login_fragment_registration_link_text">Зарегистрироваться?</string>
+
+    <!-- Recover Password Fragment strings -->
+    <string name="recover_fragment_subtitle_text">Введите адрес электронной почты, чтобы получить инструкции по восстановлению пароля</string>
+    <string name="recover_fragment_title_text">Забыл(a) пароль</string>
+    <string name="recover_fragment_send_button_text">Отправить</string>
+    <string name="recover_fragment_email_field_hint">Введите email</string>
+
+    <!-- Registration Fragment strings -->
+    <string name="registration_fragment_email_edit_text_hint">Email</string>
+    <string name="registration_fragment_password_edit_text_hint">Password</string>
+    <string name="registration_fragment_confirm_password_edit_text_hint">Confirm password</string>
+    <string name="registration_fragment_sign_in_button_name_text">Sign In</string>
+    <string name="registration_fragment_text_already_have_an_account_login">Already have an account? Login</string>
+
+
 </resources>

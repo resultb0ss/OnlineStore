@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -80,8 +79,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
                 managmentCart.insertItem(item)
             }
             fragmentDetailBackButton.setOnClickListener {
-                Toast.makeText(requireContext(), "Надо сделать переход назад", Toast.LENGTH_SHORT)
-                    .show()
+                findNavController().popBackStack()
             }
             fragmentDetailCartButton.setOnClickListener {
                 findNavController().navigate(R.id.action_detailFragment_to_cartFragment)

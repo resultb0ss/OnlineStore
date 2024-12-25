@@ -1,16 +1,17 @@
 package com.example.onlinestore.Adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.onlinestore.Model.ItemsModel
-import com.example.onlinestore.Utilits.getJsonValues
 import com.example.onlinestore.databinding.ViewholderRecommendedBinding
 
-class ListItemsAdapter(val items: MutableList<ItemsModel>, val function:(item: ItemsModel) -> Unit) :
+class ListItemsAdapter(
+    val items: MutableList<ItemsModel>,
+    val function: (item: ItemsModel) -> Unit
+) :
     RecyclerView.Adapter<ListItemsAdapter.ListItemsHolderAdapter>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -34,7 +35,7 @@ class ListItemsAdapter(val items: MutableList<ItemsModel>, val function:(item: I
             recommendedItemRatingText.text = item.rating.toString()
             Glide.with(holder.itemView.context).load(item.picUrl[0]).into(recommendedItemImage)
 
-            root.setOnClickListener{
+            root.setOnClickListener {
                 function(item)
             }
         }

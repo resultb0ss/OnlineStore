@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="settingsFragmentMainFieldText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/normalText</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginTop">@dimen/verticalMargin</item>
+        <item name="android:layout_marginStart">@dimen/horizontalMargin</item>
+    </style>
+
+    <style name="settingsFragmentChangeFieldHintText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/smallText</item>
+        <item name="android:textColor">@color/hintColorGray</item>
+        <item name="android:layout_marginStart">@dimen/horizontalMargin</item>
+    </style>
+
+    <style name="settingsFragmentMainDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/hintColorGray</item>
+        <item name="android:layout_marginTop">@dimen/verticalMargin</item>
+        <item name="android:layout_marginStart">@dimen/horizontalMargin</item>
+        <item name="android:layout_marginEnd">@dimen/horizontalMargin</item>
+    </style>
+
+
+    <style name="OutlinedTextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- Customize the outline color -->
+        <item name="boxStrokeColor">@color/main_color_day_light</item>
+        <!-- Customize the hint text color -->
+        <item name="android:textColorHint">@color/hintColorGray</item>
+        <!-- Customize other attributes as needed -->
+    </style>
+</resources>
